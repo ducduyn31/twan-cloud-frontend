@@ -1,0 +1,10 @@
+@import "breakpoints"
+
+@mixin style-up($breakpoint)
+
+  @if map-has-key($breakpoints, $breakpoint)
+    @media (min-width: map-get($breakpoints, $breakpoint))
+      @content
+
+  @else
+    @warn "No value could be retrieved from `#{$breakpoint}`, available breakpoints are: #{map-keys($breakpoints)}"

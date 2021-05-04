@@ -1,0 +1,60 @@
+@import "~@angular/material/theming"
+@import "../../../styles/functions"
+
+.container
+  width: 100vw
+  height: 100vh
+  background-color: mat-color($mat-purple, 400)
+  overflow: hidden
+
+  .form-container
+    height: 100vh
+    width: 500px
+    color: mat-color($mat-purple, 400)
+    background-color: #fff
+    position: absolute
+    overflow: hidden
+    padding: 0
+
+    mat-card-title
+      text-align: center
+      margin-top: 10%
+      margin-bottom: 10%
+
+    mat-card-content
+      margin-top: 60%
+      form
+        display: flex
+        flex-direction: column
+        align-items: center
+
+      mat-form-field
+        width: 300px
+
+      mat-label
+        color: #646464
+
+      input::placeholder
+        color: rgba(100, 100, 100, 0.6)
+
+    mat-card-actions
+      display: flex
+      flex-direction: column
+      align-items: center
+
+      button
+        width: 300px
+        margin-bottom: 10px
+
+      .signup-btn
+        background-color: #fff
+        color: mat-color($mat-purple, 400)
+
+      .forgot-pw-btn
+        margin-top: 20%
+
+    @include style-up(xs)
+      left: calc(50% - 250px)
+
+    @include style-up(lg)
+      left: 50%
