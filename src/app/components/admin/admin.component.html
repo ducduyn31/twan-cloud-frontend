@@ -1,0 +1,13 @@
+<mat-drawer-container class="admin-container">
+  <mat-drawer mode="side" opened class="admin-sidenav">
+    <ng-template [cdkPortalOutlet]="sideNav"></ng-template>
+  </mat-drawer>
+  <mat-drawer-content class="admin-content">
+    <mat-toolbar>
+      <span>T-Wan Console</span>
+    </mat-toolbar>
+    <section>
+      <ng-template [cdkPortalOutlet]="contentTemplate"></ng-template>
+    </section>
+  </mat-drawer-content>
+</mat-drawer-container>

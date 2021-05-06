@@ -3,11 +3,10 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {StorageService} from '../../shared/services/storage/storage.service';
 import {Router} from '@angular/router';
 import firebase from 'firebase';
-import UserCredential = firebase.auth.UserCredential;
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
-import FirebaseUser = firebase.User;
 import {User} from '../../shared/interfaces/user';
-import {CONFIG} from '@angular/fire/analytics';
+import {Subject} from 'rxjs';
+import FirebaseUser = firebase.User;
 
 
 @Injectable({
@@ -15,6 +14,7 @@ import {CONFIG} from '@angular/fire/analytics';
 })
 export class AuthService {
   userData: any;
+  currentUser: Subject<FirebaseUser | null> = new Subject();
 
   constructor(
     private afs: AngularFirestore,
@@ -22,11 +22,9 @@ export class AuthService {
     private storage: StorageService,
     private router: Router,
   ) {
-    this.afAuth.authState.subscribe(user => {
-      if (user) {
-        this.userData = user;
-        this.storage.set('user', this.userData);
-      }
+    this.afAuth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
+    this.afAuth.authState.subscribe((user) => {
+      this.currentUser?.next(user);
     });
   }
 
@@ -34,7 +32,10 @@ export class AuthService {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
-        if (!result.user) { return; }
+        if (!result.user) {
+          return;
+        }
+        this.router.navigateByUrl('/');
       }).catch(e => console.error(e));
   }
 

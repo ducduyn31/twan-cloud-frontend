@@ -1,0 +1,13 @@
+<app-admin [sideNav]="sideNavPortal" [contentTemplate]="contentPortal"></app-admin>
+<ng-template #sideNavTemplatePortalContent>
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let menu of menus" [hideToggle]="!!menu.children && menu.children.length == 0">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{menu.name}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+    </mat-expansion-panel>
+  </mat-accordion>
+</ng-template>
+<ng-template #mainTemplatePortalContent>Main</ng-template>

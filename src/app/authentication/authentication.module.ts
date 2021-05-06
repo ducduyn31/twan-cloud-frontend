@@ -14,6 +14,7 @@ import {AuthService} from './services/auth.service';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {AuthGuard} from './guards/auth.guard';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
     ReactiveFormsModule
   ],
   providers: [
-    AuthService,
+    AuthService, AuthGuard,
   ]
 })
 export class AuthenticationModule {

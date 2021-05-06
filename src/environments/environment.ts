@@ -12,6 +12,12 @@ export const environment = {
     messagingSenderId: '426254144796',
     appId: '1:426254144796:web:dfe97bbfaf5f647e98d6d9',
     measurementId: 'G-PPLF700EZZ'
+  },
+  sideNav: {
+    networkStatus: {
+      name: 'Network Status',
+      children: [],
+    }
   }
 };
 
