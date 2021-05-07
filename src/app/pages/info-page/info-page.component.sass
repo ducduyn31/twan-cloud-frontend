@@ -1,0 +1,109 @@
+.title
+  text-align: center
+  margin: 20px 0 50px 0
+  font-size: 2.5rem
+
+.summary
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+
+  .summary__left
+    padding: 0 0 0 4em
+    display: flex
+    flex-direction: column
+    justify-content: space-around
+
+    p
+      font-size: 2rem
+      font-weight: bold
+      margin: 0 0 20px 0
+
+    .summary__left__expire
+      margin: 0 40px 0 0
+
+  .summary__right
+    padding: 0 4em 0 0
+    display: flex
+    flex-direction: column
+
+    p
+      font-size: 1rem
+
+    .member-count
+      font-size: 1.5rem
+      margin: 20px 0 20px 0
+      .used-count
+        font-size: 4rem
+      .total-count
+        font-size: 2rem
+
+
+
+.network-list
+  margin: 50px 20px 0 20px
+
+  .subtitle
+    font-size: 1.3rem
+
+  .header
+    display: flex
+    flex-direction: row
+    justify-content: end
+    margin-bottom: 10px
+
+    button
+      margin: 0 20px 0 20px
+
+  .network-item
+    width: 100%
+    font-size: 1rem
+    padding-top: 50px
+    margin: 0 10px 0 10px
+
+    .item-title
+      display: flex
+      justify-content: space-between
+      margin-bottom: 30px
+
+      span
+        display: flex
+        mat-chip
+          height: 1rem
+          padding: 3px
+
+      i
+        font-style: normal
+        font-size: 1rem
+        font-weight: normal
+
+      .network-name
+        margin-right: 20px
+        font-weight: bold
+
+      .network-desc
+        & >  *:not(:last-child)
+          margin-right: 10px
+
+    mat-card-content
+      display: flex
+
+      .counter:not(:last-child)
+        margin-right: 20px
+
+      .counter__count__value__online
+        font-size: 2.5rem
+
+      .counter__count__value__total
+        font-size: 1.5rem
+
+      .counter__count__tag
+        margin-left: 10px
+
+    mat-card-actions
+      display: flex
+      flex-direction: row
+      justify-content: end
+
+      a:not(:last-child)
+        margin-right: 20px

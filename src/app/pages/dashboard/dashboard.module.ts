@@ -7,7 +7,6 @@ import {SharedModule} from '../../shared/shared.module';
 import {AdminModule} from '../../components/admin/admin.module';
 import {MatExpansionModule} from '@angular/material/expansion';
 
-
 @NgModule({
   declarations: [
     DashboardComponent
