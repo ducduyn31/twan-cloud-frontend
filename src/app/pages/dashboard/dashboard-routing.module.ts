@@ -10,8 +10,13 @@ const routes: Routes = [
     children: [
       {
         path: '',
+        pathMatch: 'full',
         loadChildren: () => import('../info-page/info-page.module').then(m => m.InfoPageModule)
-      }
+      },
+      {
+        path: '/detail',
+        loadChildren: () => import('../detail-page/detail-page.module').then(m => m.DetailPageModule)
+      },
     ]
   }
 ];
