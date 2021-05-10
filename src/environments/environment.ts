@@ -18,7 +18,8 @@ export const environment = {
       name: 'Network Status',
       children: [],
     }
-  }
+  },
+  apiServer: 'http://localhost:3000'
 };
 
 /*

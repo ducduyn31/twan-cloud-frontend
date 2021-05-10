@@ -40,17 +40,17 @@
     </mat-button-toggle-group>
   </div>
   <mat-grid-list cols="2" rowHeight="250px">
-    <mat-grid-tile>
+    <mat-grid-tile *ngFor="let network of networks">
       <mat-card class="network-item">
         <mat-card-title class="item-title">
           <span>
-            <i class="network-name">Techqila Official</i>
-            <mat-chip color="primary" disableRipple>default</mat-chip>
+            <i class="network-name">{{network.name}}</i>
+            <mat-chip *ngIf="network.isdefault" color="primary" disableRipple>default</mat-chip>
           </span>
 
           <span class="network-desc">
-            <i>Peer-to-peer Network</i>
-            <i>Southwest Line</i>
+            <i>{{network.type === 1 ? 'Peer-to-peer Network' : 'Service Client Network'}}</i>
+            <i>{{network.linename}}</i>
           </span>
         </mat-card-title>
         <mat-card-content>
@@ -58,9 +58,9 @@
             <p class="counter__title">Hardware member</p>
             <span class="counter__count">
         <span class="counter__count__value">
-          <i class="counter__count__value__online">1</i>
+          <i class="counter__count__value__online">{{network.servernum}}</i>
           /
-          <i class="counter__count__value__total">2</i>
+          <i class="counter__count__value__total">{{network.routernum}}</i>
         </span>
         <span class="counter__count__tag">
           Online / Total
@@ -71,101 +71,9 @@
             <p class="counter__title">Access member</p>
             <span class="counter__count">
         <span class="counter__count__value">
-          <i class="counter__count__value__online">0</i>
+          <i class="counter__count__value__online">{{network.clientnum}}</i>
           /
-          <i class="counter__count__value__total">1</i>
-        </span>
-        <span class="counter__count__tag">
-          Online / Total
-        </span>
-      </span>
-          </div>
-        </mat-card-content>
-        <mat-card-actions>
-          <a mat-button routerLink="/detail/1">See Details</a>
-          <a mat-button routerLink="/detail/1">More</a>
-        </mat-card-actions>
-      </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <mat-card class="network-item">
-        <mat-card-title class="item-title">
-          <span>
-            <i class="network-name">Tinh Van</i>
-          </span>
-
-          <span class="network-desc">
-            <i>Peer-to-peer Network</i>
-            <i>Southwest Line</i>
-          </span>
-        </mat-card-title>
-        <mat-card-content>
-          <div class="counter">
-            <p class="counter__title">Hardware member</p>
-            <span class="counter__count">
-        <span class="counter__count__value">
-          <i class="counter__count__value__online">1</i>
-          /
-          <i class="counter__count__value__total">2</i>
-        </span>
-        <span class="counter__count__tag">
-          Online / Total
-        </span>
-      </span>
-          </div>
-          <div class="counter">
-            <p class="counter__title">Access member</p>
-            <span class="counter__count">
-        <span class="counter__count__value">
-          <i class="counter__count__value__online">1</i>
-          /
-          <i class="counter__count__value__total">1</i>
-        </span>
-        <span class="counter__count__tag">
-          Online / Total
-        </span>
-      </span>
-          </div>
-        </mat-card-content>
-        <mat-card-actions>
-          <a mat-button routerLink="/detail/1">See Details</a>
-          <a mat-button routerLink="/detail/1">More</a>
-        </mat-card-actions>
-      </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <mat-card class="network-item">
-        <mat-card-title class="item-title">
-          <span>
-            <i class="network-name">Tinh Van</i>
-          </span>
-
-          <span class="network-desc">
-            <i>Peer-to-peer Network</i>
-            <i>Southwest Line</i>
-          </span>
-        </mat-card-title>
-        <mat-card-content>
-          <div class="counter">
-            <p class="counter__title">Hardware member</p>
-            <span class="counter__count">
-        <span class="counter__count__value">
-          <i class="counter__count__value__online">1</i>
-          /
-          <i class="counter__count__value__total">2</i>
-        </span>
-        <span class="counter__count__tag">
-          Online / Total
-        </span>
-      </span>
-          </div>
-          <div class="counter">
-            <p class="counter__title">Access member</p>
-            <span class="counter__count">
-        <span class="counter__count__value">
-          <i class="counter__count__value__online">1</i>
-          /
-          <i class="counter__count__value__total">1</i>
+          <i class="counter__count__value__total">{{network.bypassnum}}</i>
         </span>
         <span class="counter__count__tag">
           Online / Total

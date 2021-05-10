@@ -8,6 +8,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatIconModule} from '@angular/material/icon';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatChipsModule} from '@angular/material/chips';
+import {NetworkModule} from '../../network/network.module';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import {MatChipsModule} from '@angular/material/chips';
     MatIconModule,
     MatGridListModule,
     MatChipsModule,
+    NetworkModule,
     RouterModule.forChild([
       {
         path: '',
