@@ -1,1 +1,117 @@
-<p>detail-page works!</p>
+<h1 class="title">Network Manage Detail</h1>
+
+<div class="network-selector">
+  <mat-form-field appearance="outline">
+    <mat-select>
+      <mat-option value="tv">Tinh Van</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div class="summary">
+  <mat-grid-list cols="3" rowHeight="5:1">
+    <mat-grid-tile>
+      <div class="content">
+        <p class="summary__subject__title">Network Type:</p>
+        <p>Peer-to-peer network</p>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="content">
+        <p class="summary__subject__title">Networking Line:</p>
+        <p>Southwest line</p>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="content">
+        <p class="summary__subject__title">Network members:</p>
+        <p class="member-list">
+          <span>hardware 2</span>
+          <span>access end 1</span>
+          <span>server end 0</span>
+        </p>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="content">
+        <p class="summary__subject__title">Network ID:</p>
+        <p>703588014</p>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="content">
+        <p class="summary__subject__title">Network access method:</p>
+        <p>No one is allowed to join the network</p>
+        <a href="#">settings</a>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="content">
+        <p class="summary__subject__title">Network resources:</p>
+        <a href="#">settings</a>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+
+<div class="member-list">
+  <div class="header">
+    <div class="search">
+    </div>
+    <div class="btn-group">
+      <button class="add-mem-btn" mat-raised-button color="primary">
+        Add member
+      </button>
+      <button class="setting-btn" mat-button color="primary">
+        Network Settings
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="table-container">
+  <table mat-table [dataSource]="dataSource" [fixedLayout]="true" class="table-data mat-elevation-z8">
+    <ng-container matColumnDef="sn">
+      <th mat-header-cell *matHeaderCellDef> SN/ UID/ SID </th>
+      <td mat-cell *matCellDef="let element"> {{element.sn}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="bindPhone">
+      <th mat-header-cell *matHeaderCellDef> Bind phone </th>
+      <td mat-cell *matCellDef="let element"> {{element.bindPhone}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="attr">
+      <th mat-header-cell *matHeaderCellDef> Member Attributes </th>
+      <td mat-cell *matCellDef="let element"> {{element.attributes}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="vpn">
+      <th mat-header-cell *matHeaderCellDef> VPN Status </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-slide-toggle></mat-slide-toggle>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ip">
+      <th mat-header-cell *matHeaderCellDef> IP address </th>
+      <td mat-cell *matCellDef="let element"> {{element.ip}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="operating">
+      <th mat-header-cell *matHeaderCellDef> Operating </th>
+      <td mat-cell *matCellDef="let element">
+        <a href="#">Manage Hardware</a>
+        <a href="#">More</a>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

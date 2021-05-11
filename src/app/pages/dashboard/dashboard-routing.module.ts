@@ -11,7 +11,8 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        loadChildren: () => import('../info-page/info-page.module').then(m => m.InfoPageModule)
+        // loadChildren: () => import('../info-page/info-page.module').then(m => m.InfoPageModule)
+        loadChildren: () => import('../detail-page/detail-page.module').then(m => m.DetailPageModule)
       },
       {
         path: '/detail',
