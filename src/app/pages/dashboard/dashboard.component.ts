@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, TemplateRef, ViewChild, ViewContainerRef} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild, ViewContainerRef} from '@angular/core';
 import {TemplatePortal} from '@angular/cdk/portal';
 import {environment} from '../../../environments/environment';
 
@@ -17,7 +17,7 @@ export class DashboardComponent implements AfterViewInit {
 
   menus = Object.values(environment.sideNav);
 
-  constructor(private viewContainerRef: ViewContainerRef) { }
+  constructor(private viewContainerRef: ViewContainerRef, private cdr: ChangeDetectorRef) { }
 
   ngAfterViewInit(): void {
     this.sideNavPortal = new TemplatePortal<any>(
@@ -28,6 +28,7 @@ export class DashboardComponent implements AfterViewInit {
       this.mainContent,
       this.viewContainerRef,
     );
+    this.cdr.detectChanges();
   }
 
 }

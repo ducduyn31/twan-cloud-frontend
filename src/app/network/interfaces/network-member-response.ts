@@ -1,0 +1,47 @@
+export interface NetworkMemberResponse {
+  clientid: number;
+  clientinfo: {
+    SPMS: number;
+    choiceSPMS: boolean;
+    ip: string;
+    isbypasser: boolean;
+    mac: string;
+    mask: string;
+    model: string;
+    name: string;
+    statuscode: number;
+    type: number;
+    version: string;
+    versiontype: string;
+  };
+  clientmemo: string;
+  clienttype: number;
+  clientversion: string;
+  createtime: string;
+  devicetype: number;
+  groupid: number;
+  host: string;
+  isdelete: boolean;
+  isdiyip: boolean;
+  ishelper: boolean;
+  isshare: boolean;
+  isshowlink: boolean;
+  iswebvpn: boolean;
+  lastlogintime: string;
+  line: string;
+  member: string;
+  memberid: number;
+  networkid: number;
+  networkname: string;
+  networkspeed: number;
+  networktype: number;
+  platform: string;
+  publicip: string;
+  serialnumber: string;
+  speed: number;
+  state: number;
+  userid: number;
+  version: string;
+  virtualip: string;
+  virtualmac: string;
+}

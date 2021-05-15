@@ -9,6 +9,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatChipsModule} from '@angular/material/chips';
 import {NetworkModule} from '../../network/network.module';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import {NetworkModule} from '../../network/network.module';
     MatGridListModule,
     MatChipsModule,
     NetworkModule,
+    MatProgressBarModule,
     RouterModule.forChild([
       {
         path: '',

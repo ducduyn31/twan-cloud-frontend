@@ -6,17 +6,19 @@ import { DashboardComponent } from './dashboard.component';
 import {SharedModule} from '../../shared/shared.module';
 import {AdminModule} from '../../components/admin/admin.module';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
     DashboardComponent
   ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    DashboardRoutingModule,
-    AdminModule,
-    MatExpansionModule,
-  ]
+    imports: [
+        CommonModule,
+        SharedModule,
+        DashboardRoutingModule,
+        AdminModule,
+        MatExpansionModule,
+        MatButtonModule,
+    ]
 })
 export class DashboardModule { }

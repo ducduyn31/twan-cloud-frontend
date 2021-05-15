@@ -5,7 +5,6 @@ import {DashboardComponent} from './dashboard.component';
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
     component: DashboardComponent,
     children: [
       {
@@ -15,7 +14,7 @@ const routes: Routes = [
         loadChildren: () => import('../detail-page/detail-page.module').then(m => m.DetailPageModule)
       },
       {
-        path: '/detail',
+        path: 'detail/:networkid',
         loadChildren: () => import('../detail-page/detail-page.module').then(m => m.DetailPageModule)
       },
     ]

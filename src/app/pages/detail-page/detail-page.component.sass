@@ -3,31 +3,29 @@
   margin: 20px 0 50px 0
   font-size: 2.5rem
 
-.summary
-  mat-grid-tile
-    .content
-      display: flex
+.network-select
+  padding: 0 10px 0 10px
+
+.network-summary
+  margin: 0 10px 0 10px
+
+  .network-summary__item
+    span
       width: 100%
 
-      .summary__subject__title
-        margin-right: 20px
-        color: #646464
-
-      .member-list
-        span:not(:last-child)
-          margin-right: 20px
-
 .member-list
-  margin-top: 50px
+  margin-top: 30px
 
   .header
     display: flex
-    justify-content: space-between
+    justify-content: flex-end
+    margin-right: 10px
 
+    button:not(:last-child)
+      margin-right: 20px
 
-.table-container
-  margin-top: 50px
-
-.table-data
-  width: calc(100% - 40px)
-  margin: 0 20px 0 20px
+  .member-list__content
+    margin-top: 30px
+    padding: 0 10px 0 10px
+    table
+      width: 100%

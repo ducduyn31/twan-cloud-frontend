@@ -1,14 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {NetworkInfo} from '../../network/interfaces/network-info';
+import {NetworkGeneralService} from '../../network/network-general/network-general.service';
 import {MatTableDataSource} from '@angular/material/table';
-
-export interface MemberInfo {
-  sn: string;
-  name: string;
-  bindPhone: boolean;
-  attribute: string;
-  vpn: boolean;
-  ip: string;
-}
+import {NetworkMemberService} from '../../network/network-member/network-member.service';
+import {NetworkMemberResponse} from '../../network/interfaces/network-member-response';
+import {switchMap, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-detail-page',
@@ -17,22 +14,29 @@ export interface MemberInfo {
 })
 export class DetailPageComponent implements OnInit {
 
-  dataSource = new MatTableDataSource<MemberInfo>([
-    {
-      sn: '615029679381',
-      name: 'TWIN',
-      bindPhone: true,
-      attribute: 'hardware',
-      vpn: true,
-      ip: '10.168.1.1'
-    }
-  ]);
-  displayedColumns = ['sn', 'name', 'bindPhone', 'attr', 'vpn', 'ip', 'operating'];
+  currentNetworkId = '-1';
+  networks: NetworkInfo[] = [];
+  currentNetwork: NetworkInfo | null = null;
+  memberDataSource = new MatTableDataSource<NetworkMemberResponse>([]);
+  displayedColumns = ['sn', 'name', 'bind', 'attribute', 'vpn', 'ip', 'actions'];
 
-  constructor() {
-  }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private networkService: NetworkGeneralService,
+    private memberService: NetworkMemberService
+  ) { }
 
   ngOnInit(): void {
+    this.activatedRoute.params.pipe(
+      tap(params => this.currentNetworkId = params.networkid),
+      switchMap(params => this.memberService.getNetworkMembers(+params.networkid)),
+      tap(members => this.memberDataSource.data = members),
+      switchMap(() => this.networkService.listNetworks()),
+      tap(networks => {
+        this.networks = networks;
+        this.currentNetwork = this.networks.filter(network => network.networkid === +this.currentNetworkId)[0];
+      })
+    ).subscribe();
   }
 
 }

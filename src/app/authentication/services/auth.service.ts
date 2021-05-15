@@ -15,6 +15,7 @@ import FirebaseUser = firebase.User;
 export class AuthService {
   userData: any;
   currentUser: Subject<FirebaseUser | null> = new Subject();
+  currentToken: string | null = null;
 
   constructor(
     private afs: AngularFirestore,
@@ -25,6 +26,7 @@ export class AuthService {
     this.afAuth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
     this.afAuth.authState.subscribe((user) => {
       this.currentUser?.next(user);
+      user?.getIdToken().then((token) => this.currentToken = token);
     });
   }
 
