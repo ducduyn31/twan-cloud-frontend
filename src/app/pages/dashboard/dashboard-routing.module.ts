@@ -16,6 +16,10 @@ const routes: Routes = [
         path: 'detail/:networkid',
         loadChildren: () => import('../detail-page/detail-page.module').then(m => m.DetailPageModule)
       },
+      {
+        path: 'members',
+        loadChildren: () => import('../members-page/members-page.module').then(m => m.MembersPageModule)
+      },
     ]
   }
 ];

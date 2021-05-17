@@ -1,7 +1,7 @@
 <app-admin [sideNav]="sideNavPortal" [contentTemplate]="contentPortal"></app-admin>
 <ng-template #sideNavTemplatePortalContent>
   <mat-accordion>
-    <mat-expansion-panel *ngFor="let menu of menus" [hideToggle]="!!menu.children && menu.children.length == 0" routerLink="">
+    <mat-expansion-panel *ngFor="let menu of menus" [hideToggle]="!!menu.children && menu.children.length == 0" [routerLink]="menu.url">
       <mat-expansion-panel-header>
         <mat-panel-title>
           {{menu.name}}

@@ -14,11 +14,21 @@ export const environment = {
     measurementId: 'G-PPLF700EZZ'
   },
   sideNav: {
-    networkStatus: {
+    dashboard: {
       name: 'Dashboard',
       url: '',
       children: [],
-    }
+    },
+    memberManagement: {
+      name: 'Member Management',
+      url: 'members',
+      children: []
+    },
+    defaultNetwork: {
+      name: 'Default Network',
+      url: 'detail',
+      children: []
+    },
   },
   apiServer: 'http://localhost:3000/'
 };
