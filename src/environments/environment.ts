@@ -15,7 +15,8 @@ export const environment = {
   },
   sideNav: {
     networkStatus: {
-      name: 'Network Status',
+      name: 'Dashboard',
+      url: '',
       children: [],
     }
   },

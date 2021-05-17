@@ -18,7 +18,7 @@ export class DetailPageComponent implements OnInit {
   networks: NetworkInfo[] = [];
   currentNetwork: NetworkInfo | null = null;
   memberDataSource = new MatTableDataSource<NetworkMemberResponse>([]);
-  displayedColumns = ['sn', 'name', 'bind', 'attribute', 'vpn', 'ip', 'actions'];
+  displayedColumns = ['sn', 'name', 'attribute', 'vpn', 'ip', 'actions'];
 
   constructor(
     private activatedRoute: ActivatedRoute,

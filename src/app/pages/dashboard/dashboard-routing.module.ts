@@ -10,8 +10,7 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        // loadChildren: () => import('../info-page/info-page.module').then(m => m.InfoPageModule)
-        loadChildren: () => import('../detail-page/detail-page.module').then(m => m.DetailPageModule)
+        loadChildren: () => import('../info-page/info-page.module').then(m => m.InfoPageModule)
       },
       {
         path: 'detail/:networkid',
@@ -25,4 +24,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class DashboardRoutingModule { }
+export class DashboardRoutingModule {
+}

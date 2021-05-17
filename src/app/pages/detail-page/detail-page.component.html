@@ -84,16 +84,6 @@
           {{member.clientmemo}}
         </td>
       </ng-container>
-      <ng-container matColumnDef="bind">
-        <th mat-header-cell *matHeaderCellDef>
-          Bind Phone
-        </th>
-        <td mat-cell *matCellDef="let member">
-          <div *ngIf="member.isdiyip; then bindPhone else noBind"></div>
-          <ng-template #bindPhone><a mat-button href="#">Bind Phone</a></ng-template>
-          <ng-template #noBind> - </ng-template>
-        </td>
-      </ng-container>
       <ng-container matColumnDef="attribute">
         <th mat-header-cell *matHeaderCellDef>
           Member Attributes
@@ -107,7 +97,7 @@
           VPN Status
         </th>
         <td mat-cell *matCellDef="let member">
-          <mat-slide-toggle></mat-slide-toggle>
+          <mat-slide-toggle [checked]="member.state === 1"></mat-slide-toggle>
         </td>
       </ng-container>
       <ng-container matColumnDef="ip">
@@ -123,7 +113,10 @@
           Actions
         </th>
         <td mat-cell *matCellDef="let member">
-          <a mat-button href="#">wtf</a>
+          <div class="actions">
+            <button mat-raised-button>Device List</button>
+            <button mat-button>Remove from network</button>
+          </div>
         </td>
       </ng-container>
 
