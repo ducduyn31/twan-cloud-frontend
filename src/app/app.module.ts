@@ -9,6 +9,7 @@ import {environment} from '../environments/environment';
 
 import {AngularFireAuth, USE_EMULATOR as USE_AUTH_EMULATOR} from '@angular/fire/auth';
 import { USE_EMULATOR as USE_FIRESTORE_EMULATOR } from '@angular/fire/firestore';
+import { DeviceListComponent } from './components/device-list/device-list.component';
 
 export function initializeApp(afa: AngularFireAuth): any {
   return () => {
@@ -22,6 +23,7 @@ export function initializeApp(afa: AngularFireAuth): any {
 @NgModule({
   declarations: [
     AppComponent,
+    DeviceListComponent,
   ],
   imports: [
     BrowserModule,

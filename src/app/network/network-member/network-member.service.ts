@@ -31,4 +31,15 @@ export class NetworkMemberService {
       }
     });
   }
+
+  public removeFromNetwork(member: string, network: number): Observable<{ code: number }> {
+    return this.http.post<{ code: number }>(`${this.apiServer}api/member/remove`, {
+      member,
+      networkid: network,
+    }, {
+      headers: {
+        authorization: `${this.authService.currentToken}`,
+      }
+    });
+  }
 }

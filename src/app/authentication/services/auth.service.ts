@@ -41,6 +41,11 @@ export class AuthService {
       }).catch(e => console.error(e));
   }
 
+  async signOut(): Promise<void> {
+    await this.afAuth.signOut();
+    this.router.navigateByUrl('/auth');
+  }
+
   private updateUser(user: FirebaseUser): Promise<void> {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`user/${user.uid}`);
     const userData: User = {
