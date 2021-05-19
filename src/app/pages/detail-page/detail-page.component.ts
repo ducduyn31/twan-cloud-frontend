@@ -6,6 +6,9 @@ import {MatTableDataSource} from '@angular/material/table';
 import {NetworkMemberService} from '../../network/network-member/network-member.service';
 import {NetworkMemberResponse} from '../../network/interfaces/network-member-response';
 import {switchMap, tap} from 'rxjs/operators';
+import {MatDialog} from '@angular/material/dialog';
+import {DeviceListComponent} from '../../components/device-list/device-list.component';
+import {AddDeviceComponent} from '../../components/add-device/add-device.component';
 
 @Component({
   selector: 'app-detail-page',
@@ -23,7 +26,8 @@ export class DetailPageComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private networkService: NetworkGeneralService,
-    private memberService: NetworkMemberService
+    private memberService: NetworkMemberService,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -39,4 +43,19 @@ export class DetailPageComponent implements OnInit {
     ).subscribe();
   }
 
+  listDevices(member: string): void {
+    this.dialog.open(DeviceListComponent, {
+      data: {
+        id: member,
+      }
+    });
+  }
+
+  addMemberForNetwork(currentNetworkId: string): void {
+    this.dialog.open(AddDeviceComponent, {
+      data: {
+        networkId: currentNetworkId,
+      }
+    });
+  }
 }

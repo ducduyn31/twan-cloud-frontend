@@ -16,7 +16,7 @@ export class NetworkMemberService {
   constructor(private http: HttpClient, private authService: AuthService) {
   }
 
-  public getNetworkMembers(network: number): Observable<NetworkMemberResponse[]> {
+  public getNetworkMembers(network: number | string): Observable<NetworkMemberResponse[]> {
     return this.http.get<NetworkMemberResponse[]>(`${this.apiServer}api/network/${network}/members`, {
       headers: {
         authorization: `${this.authService.currentToken}`,
@@ -37,6 +37,28 @@ export class NetworkMemberService {
       member,
       networkid: network,
     }, {
+      headers: {
+        authorization: `${this.authService.currentToken}`,
+      }
+    });
+  }
+
+  public addToNetwork(member: string, network: number, center: boolean): Observable<{ code: number }> {
+    return this.http.post<{ code: number }>(`${this.apiServer}api/member/add`, {
+      member,
+      networkid: network,
+      iscenter: center,
+      groupid: 0,
+      type: 0,
+    }, {
+      headers: {
+        authorization: `${this.authService.currentToken}`,
+      }
+    });
+  }
+
+  public getMemberDevices(member: string): Observable<any> {
+    return this.http.get(`${this.apiServer}api/member/${member}/devices`, {
       headers: {
         authorization: `${this.authService.currentToken}`,
       }

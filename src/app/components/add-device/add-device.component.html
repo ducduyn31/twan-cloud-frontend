@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="header">
+    <p>Network ID: {{data.networkId}}</p>
+    <button mat-button mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <mat-grid-list cols="2" rowHeight="200px" gutterSize="20px" class="content-wrapper">
+    <mat-grid-tile>
+      <div class="tile-content">
+        <div class="tile-content__title">Server Member(s)</div>
+        <mat-list class="member-list"
+             id="server-list"
+             cdkDropList
+             [cdkDropListData]="serverList"
+             [cdkDropListConnectedTo]="['server-list', 'edge-list', 'mesh-list']"
+             [cdkDropListEnterPredicate]="serverPredicate"
+             (cdkDropListDropped)="drop($event)"
+        >
+          <mat-list-item class="member-item mat-elevation-z3" *ngFor="let member of serverList" cdkDrag [cdkDragData]="member">{{member.vpnid}}</mat-list-item>
+        </mat-list>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="tile-content">
+        <div class="tile-content__title">Mesh Cluster(s)</div>
+        <mat-list class="member-list"
+                  cdkDropList
+                  id="mesh-list"
+                  [cdkDropListData]="meshList"
+                  [cdkDropListConnectedTo]="['server-list', 'hardware-list','edge-list', 'mesh-list']"
+                  (cdkDropListDropped)="drop($event)"
+        >
+          <mat-list-item class="member-item mat-elevation-z3" *ngFor="let member of meshList" cdkDrag [cdkDragData]="member">{{member.sn || member.vpnid}}</mat-list-item>
+        </mat-list>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="tile-content">
+        <div class="tile-content__title">Hardware Member(s)</div>
+        <mat-list class="member-list"
+                  cdkDropList
+                  id="hardware-list"
+                  [cdkDropListData]="hardwareList"
+                  [cdkDropListConnectedTo]="['hardware-list','edge-list', 'mesh-list']"
+                  (cdkDropListDropped)="drop($event)"
+                  [cdkDropListEnterPredicate]="hardwarePredicate"
+        >
+          <mat-list-item class="member-item mat-elevation-z3" *ngFor="let member of hardwareList" cdkDrag [cdkDragData]="member">{{member.sn}}</mat-list-item>
+        </mat-list>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="tile-content">
+        <div class="tile-content__title">Network Member(s)</div>
+        <mat-list class="member-list"
+                  cdkDropList
+                  id="edge-list"
+                  [cdkDropListData]="edgeList"
+                  [cdkDropListConnectedTo]="['server-list', 'hardware-list','edge-list', 'mesh-list']"
+                  (cdkDropListDropped)="drop($event)"
+        >
+          <mat-list-item class="member-item mat-elevation-z3" *ngFor="let member of edgeList" cdkDrag [cdkDragData]="member">{{member.sn || member.vpnid}}</mat-list-item>
+        </mat-list>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button [mat-dialog-close]="true" (click)="save()">Save</button>
+  </mat-dialog-actions>
+</div>

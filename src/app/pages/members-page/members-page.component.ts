@@ -29,11 +29,9 @@ export class MembersPageComponent implements OnInit {
   openDeviceListDialog(sn: string): void {
     this.dialog.open(DeviceListComponent, {
       data: {
-        sn,
+        id: sn,
       }
     });
-
-
   }
 
   removeMember(sn: string, networkid: number): void {

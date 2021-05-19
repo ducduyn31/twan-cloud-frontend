@@ -57,9 +57,9 @@
 
 <div class="member-list" *ngIf="currentNetwork">
   <div class="header">
-    <button class="create-network-btn" mat-raised-button color="primary">
+    <button class="create-network-btn" mat-raised-button color="primary" (click)="addMemberForNetwork(currentNetworkId)">
       <mat-icon>add</mat-icon>
-      Create a network
+      Add A Device
     </button>
     <button class="create-network-btn" mat-stroked-button color="primary">
       Network Settings
@@ -114,7 +114,7 @@
         </th>
         <td mat-cell *matCellDef="let member">
           <div class="actions">
-            <button mat-raised-button>Device List</button>
+            <button mat-raised-button (click)="listDevices(member.member)">Device List</button>
             <button mat-button>Remove from network</button>
           </div>
         </td>
