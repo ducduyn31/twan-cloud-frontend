@@ -4,6 +4,8 @@ import {HardwareMemberGeneralInfoResponse, SoftwareMemberGeneralInfoResponse} fr
 import {NetworkMemberService} from '../../network/network-member/network-member.service';
 import {CdkDrag, CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {switchMap, tap} from 'rxjs/operators';
+import {Observable} from 'rxjs';
+import {DetailPageComponent} from '../../pages/detail-page/detail-page.component';
 
 @Component({
   selector: 'app-add-device',
@@ -30,15 +32,15 @@ export class AddDeviceComponent implements OnInit {
   private static insertAction(map: Map<string, { action: 'add' | 'remove', count: number }>, action: 'add' | 'remove', id: string): void {
     // @ts-ignore
     if (!map.has(id) || map.get(id).count === 0) {
-      map.set(id, { action, count: 1 });
+      map.set(id, {action, count: 1});
     } else {
       // @ts-ignore
       const prev = map.get(id).count;
       // @ts-ignore
       if (map.get(id).action === action) {
-        map.set(id, { action, count: prev + 1 });
+        map.set(id, {action, count: prev + 1});
       } else {
-        map.set(id, { action, count: prev - 1 });
+        map.set(id, {action, count: prev - 1});
       }
     }
   }
@@ -127,20 +129,28 @@ export class AddDeviceComponent implements OnInit {
     return 'vpnid' in item.data && item.data.vpnid.startsWith('S');
   }
 
-  save(): void {
+  async save(): Promise<void> {
     const edgeKeys = Array.from(this.edgeActionQueue.keys());
+    const queues: Observable<any>[] = [];
 
     edgeKeys.forEach(key => {
       // @ts-ignore
       if (this.edgeActionQueue.get(key).count > 0) {
         // @ts-ignore
         if (this.edgeActionQueue.get(key).action === 'add') {
-          this.networkMemberService.addToNetwork(key, +this.data.networkId, false).subscribe();
+          queues.push(this.networkMemberService.addToNetwork(key, +this.data.networkId, false));
         } else {
-          this.networkMemberService.removeFromNetwork(key, +this.data.networkId).subscribe();
+          queues.push(this.networkMemberService.removeFromNetwork(key, +this.data.networkId));
         }
       }
     });
+
+    for (const ob of queues) {
+      ob.subscribe();
+      await new Promise(resolve => setTimeout(resolve, 200));
+    }
+
+    DetailPageComponent.$reloadPageSignal.next(+this.data.networkId);
   }
 }
 

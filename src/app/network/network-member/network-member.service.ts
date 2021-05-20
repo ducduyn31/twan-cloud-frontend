@@ -24,12 +24,16 @@ export class NetworkMemberService {
     });
   }
 
-  public getAllMembers(): Observable<Array<HardwareMemberGeneralInfoResponse | SoftwareMemberGeneralInfoResponse>> {
-    return this.http.get<Array<HardwareMemberGeneralInfoResponse | SoftwareMemberGeneralInfoResponse>>(`${this.apiServer}api/members`, {
-      headers: {
-        authorization: `${this.authService.currentToken}`,
-      }
-    });
+  public getAllMembers(requiresNotInNetwork: boolean = false): Observable<Array<HardwareMemberGeneralInfoResponse
+    | SoftwareMemberGeneralInfoResponse>> {
+    return this.http
+      .get<Array<HardwareMemberGeneralInfoResponse | SoftwareMemberGeneralInfoResponse>>(
+        `${this.apiServer}api/members${requiresNotInNetwork ? '?notInNetwork=0' : ''}`,
+        {
+          headers: {
+            authorization: `${this.authService.currentToken}`,
+          }
+        });
   }
 
   public removeFromNetwork(member: string, network: number): Observable<{ code: number }> {

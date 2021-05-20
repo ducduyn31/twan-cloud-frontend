@@ -17,6 +17,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatListModule} from '@angular/material/list';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatTableModule} from '@angular/material/table';
 
 export function initializeApp(afa: AngularFireAuth): any {
   return () => {
@@ -33,18 +34,19 @@ export function initializeApp(afa: AngularFireAuth): any {
     DeviceListComponent,
     AddDeviceComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    AuthenticationModule,
-    BrowserAnimationsModule,
-    MatIconModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatGridListModule,
-    MatListModule,
-    DragDropModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        AuthenticationModule,
+        BrowserAnimationsModule,
+        MatIconModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatGridListModule,
+        MatListModule,
+        DragDropModule,
+        MatTableModule,
+    ],
   providers: [
     {
       provide: USE_AUTH_EMULATOR, useValue: environment.production ? undefined : ['localhost', 9099]

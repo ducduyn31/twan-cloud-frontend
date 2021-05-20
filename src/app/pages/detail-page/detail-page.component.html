@@ -30,6 +30,8 @@
       <mat-grid-tile class="network-summary__item" >
         <span>
           <b>Network Members: </b>
+          Hardware {{hardwareCount}}
+          Server {{serverCount}}
         </span>
       </mat-grid-tile>
       <mat-grid-tile class="network-summary__item" >
@@ -89,7 +91,7 @@
           Member Attributes
         </th>
         <td mat-cell *matCellDef="let member">
-          wtf
+          {{member.devicetype === 0 ? 'Hardware' : (member.devicetype === 2 ? 'Server' : 'Software')}}
         </td>
       </ng-container>
       <ng-container matColumnDef="vpn">
@@ -115,7 +117,7 @@
         <td mat-cell *matCellDef="let member">
           <div class="actions">
             <button mat-raised-button (click)="listDevices(member.member)">Device List</button>
-            <button mat-button>Remove from network</button>
+            <button mat-button (click)="removeMember(member.member)">Remove from network</button>
           </div>
         </td>
       </ng-container>
