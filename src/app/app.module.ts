@@ -22,7 +22,7 @@ import {MatTableModule} from '@angular/material/table';
 export function initializeApp(afa: AngularFireAuth): any {
   return () => {
     return new Promise(resolve => {
-      afa.useEmulator('http://localhost:9099/');
+      // afa.useEmulator('http://localhost:9099/');
       setTimeout(() => resolve(true), 100);
     });
   };
@@ -48,12 +48,12 @@ export function initializeApp(afa: AngularFireAuth): any {
         MatTableModule,
     ],
   providers: [
-    {
-      provide: USE_AUTH_EMULATOR, useValue: environment.production ? undefined : ['localhost', 9099]
-    },
-    {
-      provide: USE_FIRESTORE_EMULATOR, useValue: environment.production ? undefined : ['localhost', 8080]
-    },
+    // {
+    //   provide: USE_AUTH_EMULATOR, useValue: environment.production ? undefined : ['localhost', 9099]
+    // },
+    // {
+    //   provide: USE_FIRESTORE_EMULATOR, useValue: environment.production ? undefined : ['localhost', 8080]
+    // },
     // TODO: Remove on production
     {
       provide: APP_INITIALIZER,
