@@ -17,7 +17,7 @@ export class NetworkMemberService {
   }
 
   public getNetworkMembers(network: number): Observable<NetworkMemberResponse[]> {
-    return this.http.get<NetworkMemberResponse[]>(`${this.apiServer}api/network/${network}/members`, {
+    return this.http.get<NetworkMemberResponse[]>(`${this.apiServer}api/v2/network/${network}/members`, {
       headers: {
         authorization: `${this.authService.currentToken}`,
       }
@@ -25,7 +25,7 @@ export class NetworkMemberService {
   }
 
   public getAllMembers(): Observable<Array<HardwareMemberGeneralInfoResponse | SoftwareMemberGeneralInfoResponse>> {
-    return this.http.get<Array<HardwareMemberGeneralInfoResponse | SoftwareMemberGeneralInfoResponse>>(`${this.apiServer}api/members`, {
+    return this.http.get<Array<HardwareMemberGeneralInfoResponse | SoftwareMemberGeneralInfoResponse>>(`${this.apiServer}api/v2/members`, {
       headers: {
         authorization: `${this.authService.currentToken}`,
       }

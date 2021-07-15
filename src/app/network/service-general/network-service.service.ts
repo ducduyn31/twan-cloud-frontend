@@ -16,7 +16,7 @@ export class NetworkServiceService {
   }
 
   public getAccountInfo(): Observable<NetworkService> {
-    return this.http.get<NetworkService>(`${this.apiServer}api/service`, {
+    return this.http.get<NetworkService>(`${this.apiServer}api/v2/service`, {
       headers: {
         authorization: `${this.authService.currentToken}`,
       }
