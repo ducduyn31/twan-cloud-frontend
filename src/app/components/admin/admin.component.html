@@ -3,8 +3,9 @@
     <ng-template [cdkPortalOutlet]="sideNav"></ng-template>
   </mat-drawer>
   <mat-drawer-content class="admin-content">
-    <mat-toolbar>
-      <span>T-Wan Console</span>
+    <mat-toolbar class="top-nav">
+      <div>T-Wan Console</div>
+      <button mat-button (click)="logout()">Logout</button>
     </mat-toolbar>
     <section>
       <ng-template [cdkPortalOutlet]="contentTemplate"></ng-template>

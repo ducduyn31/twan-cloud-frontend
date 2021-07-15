@@ -68,6 +68,20 @@
               <mat-progress-bar mode="determinate" value="{{networkState[network.networkid].router/network.routernum * 100}}" style="margin-top: 5px"></mat-progress-bar>
       </span>
           </div>
+          <div class="counter">
+            <p class="counter__title">Server member</p>
+            <span class="counter__count">
+        <span class="counter__count__value">
+          <i class="counter__count__value__online">{{networkState[network.networkid].server}}</i>
+          /
+          <i class="counter__count__value__total">{{network.servernum}}</i>
+        </span>
+        <span class="counter__count__tag">
+          Online / Total
+        </span>
+              <mat-progress-bar mode="determinate" value="{{networkState[network.networkid].server/network.servernum * 100}}" style="margin-top: 5px"></mat-progress-bar>
+      </span>
+          </div>
         </mat-card-content>
         <mat-card-actions>
           <a mat-button routerLink="/detail/{{network.networkid}}">See Details</a>

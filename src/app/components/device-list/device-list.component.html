@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="header">
+    <p>ID: {{data.id}}</p>
+    <button mat-button mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div class="content-wrapper">
+    <table mat-table [dataSource]="deviceDatasource" class="mat-elevation-z8">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>
+          Device Name
+        </th>
+        <td mat-cell *matCellDef="let member">
+          {{member.hostname || '-'}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef>
+          Connection Type
+        </th>
+        <td mat-cell *matCellDef="let member">
+          {{member.type === 'eth' ? 'Wired Connection' : 'Wireless Connection'}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="mac">
+        <th mat-header-cell *matHeaderCellDef>
+          Mac Address
+        </th>
+        <td mat-cell *matCellDef="let member">
+          {{member.mac}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="ip">
+        <th mat-header-cell *matHeaderCellDef>
+          IP Adrress
+        </th>
+        <td mat-cell *matCellDef="let member">
+          {{member.ip}}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>

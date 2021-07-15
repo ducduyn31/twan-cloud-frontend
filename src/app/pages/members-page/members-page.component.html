@@ -7,10 +7,6 @@
         <button class="create-network-btn" mat-stroked-button color="primary">
           Label Management
         </button>
-        <button class="create-network-btn" mat-raised-button color="primary">
-          <mat-icon>add</mat-icon>
-          Create a network
-        </button>
       </div>
 
       <div class="member-list__content">
@@ -37,6 +33,14 @@
             </th>
             <td mat-cell *matCellDef="let member">
               {{member.networkname || '-'}}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="labels">
+            <th mat-header-cell *matHeaderCellDef>
+              Label
+            </th>
+            <td mat-cell *matCellDef="let member">
+              -
             </td>
           </ng-container>
           <ng-container matColumnDef="net_ip">
@@ -69,19 +73,91 @@
             </th>
             <td mat-cell *matCellDef="let member">
               <div class="actions">
-                <button mat-raised-button>Device List</button>
-                <button mat-button>Remove from network</button>
+                <button mat-raised-button (click)="openDeviceListDialog(member.sn)">Device List</button>
+                <button mat-button (click)="removeMember(member.sn, member.networkid)">Remove from network</button>
               </div>
             </td>
           </ng-container>
 
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          <tr mat-header-row *matHeaderRowDef="hardwareDisplayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: hardwareDisplayedColumns;"></tr>
         </table>
       </div>
     </div>
   </mat-tab>
-  <mat-tab label="Server Member"></mat-tab>
+  <mat-tab label="Server Member">
+    <div class="member-list">
+      <div class="header">
+      </div>
+
+      <div class="member-list__content">
+        <table mat-table [dataSource]="softwareDatasource" class="mat-elevation-z8">
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>
+              Name
+            </th>
+            <td mat-cell *matCellDef="let member">
+              {{member.memo}}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="sn">
+            <th mat-header-cell *matHeaderCellDef>
+              Server ID
+            </th>
+            <td mat-cell *matCellDef="let member">
+              {{member.vpnid}}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="network">
+            <th mat-header-cell *matHeaderCellDef>
+              Network
+            </th>
+            <td mat-cell *matCellDef="let member">
+              {{member.networkname || '-'}}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="net_ip">
+            <th mat-header-cell *matHeaderCellDef>
+              Intranet IP
+            </th>
+            <td mat-cell *matCellDef="let member">
+              {{member.virtualip}}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="public_ip">
+            <th mat-header-cell *matHeaderCellDef>
+              Public IP
+            </th>
+            <td mat-cell *matCellDef="let member">
+              {{member.publicip}}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="firmware">
+            <th mat-header-cell *matHeaderCellDef>
+              Firmware
+            </th>
+            <td mat-cell *matCellDef="let member">
+              {{member.version}}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>
+              Actions
+            </th>
+            <td mat-cell *matCellDef="let member">
+              <div class="actions">
+                <button mat-raised-button (click)="openDeviceListDialog(member.member)">Device List</button>
+                <button mat-button (click)="removeMember(member.member, member.networkid)">Remove from network</button>
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="serverDisplayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: serverDisplayedColumns;"></tr>
+        </table>
+      </div>
+    </div>
+  </mat-tab>
 </mat-tab-group>
 
 

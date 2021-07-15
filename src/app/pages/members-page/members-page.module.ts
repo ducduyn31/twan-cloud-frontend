@@ -7,6 +7,7 @@ import {NetworkModule} from '../../network/network.module';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 
@@ -27,6 +28,7 @@ import {MatTableModule} from '@angular/material/table';
     MatButtonModule,
     MatIconModule,
     MatTableModule,
+    MatDialogModule,
   ],
 })
 export class MembersPageModule { }
