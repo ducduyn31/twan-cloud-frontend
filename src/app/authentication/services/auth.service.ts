@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
-import {AngularFireAuth} from '@angular/fire/auth';
 import {StorageService} from '../../shared/services/storage/storage.service';
 import {Router} from '@angular/router';
-import firebase from 'firebase';
-import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {User} from '../../shared/interfaces/user';
 import {Subject} from 'rxjs';
+import {AngularFireAuth} from '@angular/fire/compat/auth';
+import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/compat/firestore';
+import firebase from 'firebase/compat/app';
 import FirebaseUser = firebase.User;
 
 

@@ -23,7 +23,7 @@ export class AuthGuard implements CanActivate {
         }
 
         return scheduled(user.getIdTokenResult(), asyncScheduler)
-          .pipe(map((result) => !moment(result.expirationTime).isBefore(moment())));
+          .pipe(map((result: any) => !moment(result.expirationTime).isBefore(moment())));
       })
     );
   }
