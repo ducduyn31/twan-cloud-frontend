@@ -1,6 +1,8 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import {AuthGuard} from './authentication/guards/auth.guard';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {AuthGuard, redirectUnauthorizedTo} from '@angular/fire/auth-guard';
+
+const redirectToUnauthorizedToLogin = () => redirectUnauthorizedTo(['auth']);
 
 const routes: Routes = [
   {
@@ -10,6 +12,9 @@ const routes: Routes = [
   {
     path: '',
     canActivate: [AuthGuard],
+    data: {
+      authGuardPipe: redirectToUnauthorizedToLogin,
+    },
     loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule),
   },
 ];

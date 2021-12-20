@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "twan-cloud": {
+      "hosting": {
+        "oray-cloud-frontend": [
+          "twan-cloud"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "twan-cloud"
+  }
+}

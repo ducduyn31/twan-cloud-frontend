@@ -3,10 +3,9 @@ import {StorageService} from '../../shared/services/storage/storage.service';
 import {Router} from '@angular/router';
 import {User} from '../../shared/interfaces/user';
 import {Subject} from 'rxjs';
-import {AngularFireAuth} from '@angular/fire/compat/auth';
-import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/compat/firestore';
-import firebase from 'firebase/compat/app';
-import FirebaseUser = firebase.User;
+import {Auth, signInWithEmailAndPassword} from '@angular/fire/auth';
+import {Firestore, DocumentReference, doc, updateDoc} from '@angular/fire/firestore';
+import {User as FirebaseUser} from 'firebase/auth/dist/auth';
 
 
 @Injectable({
@@ -18,27 +17,28 @@ export class AuthService {
   currentToken: string | null = null;
 
   constructor(
-    private afs: AngularFirestore,
-    private afAuth: AngularFireAuth,
+    private afs: Firestore,
+    private afAuth: Auth,
     private storage: StorageService,
     private router: Router,
   ) {
-    this.afAuth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
-    this.afAuth.authState.subscribe((user) => {
+    this.afAuth.setPersistence({type: 'SESSION'});
+    this.afAuth.onAuthStateChanged((user) => {
       this.currentUser?.next(user);
       user?.getIdToken().then((token) => this.currentToken = token);
     });
   }
 
-  signIn(email: string, password: string): Promise<void> {
-    return this.afAuth
-      .signInWithEmailAndPassword(email, password)
-      .then((result) => {
-        if (!result.user) {
-          return;
-        }
-        this.router.navigateByUrl('/');
-      }).catch(e => console.error(e));
+  async signIn(email: string, password: string): Promise<void> {
+    try {
+      const userCred = await signInWithEmailAndPassword(this.afAuth, email, password);
+      if (!userCred.user) {
+        return;
+      }
+      this.router.navigateByUrl('/');
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   async signOut(): Promise<void> {
@@ -46,8 +46,8 @@ export class AuthService {
     this.router.navigateByUrl('/auth');
   }
 
-  private updateUser(user: FirebaseUser): Promise<void> {
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`user/${user.uid}`);
+  private async updateUser(user: FirebaseUser): Promise<void> {
+    const userRef: DocumentReference<any> = doc(this.afs, `user/${user.uid}`);
     const userData: User = {
       uid: user.uid,
       email: user.email || '',
@@ -55,8 +55,6 @@ export class AuthService {
       photoURL: user.photoURL || '',
       emailVerified: user.emailVerified,
     };
-    return userRef.set(userData, {
-      merge: true
-    });
+    return updateDoc(userRef, userData);
   }
 }

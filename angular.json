@@ -125,6 +125,16 @@
               "devServerTarget": "oray-cloud-frontend:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "oray-cloud-frontend:build:production",
+            "firebaseProject": "twan-cloud",
+            "firebaseHostingSite": "twan-cloud"
+          }
         }
       }
     }

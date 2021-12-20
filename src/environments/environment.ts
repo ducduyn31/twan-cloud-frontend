@@ -5,13 +5,14 @@
 export const environment = {
   production: false,
   firebase: {
+    projectId: 'twan-cloud',
+    appId: '1:426254144796:web:dfe97bbfaf5f647e98d6d9',
+    storageBucket: 'twan-cloud.appspot.com',
+    locationId: 'asia-southeast2',
     apiKey: 'AIzaSyBoO7UeDwfesYEHEW5sWcpp8N9XX7nJ_dE',
     authDomain: 'twan-cloud.firebaseapp.com',
-    projectId: 'twan-cloud',
-    storageBucket: 'twan-cloud.appspot.com',
     messagingSenderId: '426254144796',
-    appId: '1:426254144796:web:dfe97bbfaf5f647e98d6d9',
-    measurementId: 'G-PPLF700EZZ'
+    measurementId: 'G-PPLF700EZZ',
   },
   sideNav: {
     dashboard: {
@@ -30,7 +31,7 @@ export const environment = {
       children: []
     },
   },
-  apiServer: 'http://localhost:3030/'
+  apiServer: 'http://localhost:3000/'
 };
 
 /*
